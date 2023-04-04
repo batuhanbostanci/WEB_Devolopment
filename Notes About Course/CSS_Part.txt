@@ -1,0 +1,7 @@
+When you dealing with the CSS part. 
+ * Positions on CSS is very important. Basically, there are 4 postion type which are absloute, relative, block-inline and fixed
+ * You can use the fixed propertiy in navigation bar or similar stufss. Because you want you follow that one to user. 
+ * In absloute, the div porpertiy is exclude from your html body, you can put whatever you want to div. 
+ * Block-Inline, is also very important because some of the html properties are follows themself and some of them are not. For that reason, you can use block-inline property. 
+
+ * 16px = 100% = 1em
