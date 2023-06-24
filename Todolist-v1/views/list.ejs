@@ -4,20 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
     <title>To Do List</title>
   </head>
   <body>
-    <h1><%=kindOfDay%></h1>
+    <div class="box" id="heading">
+      <h1><%=listTitle%></h1>
+    </div>
 
-    <ul>
-      <li>Buy Food</li>
-      <li>Cook Food</li>
-      <li>Eat Food</li>
-    </ul>
+    <div class="box">
+      <% for(let i=0; i<newListItem.length;i++) { %>
+      <div class="item">
+        <input type="checkbox" name="checkbox" />
+        <p><%= newListItem[i] %></p>
+      </div>
+      <% } %>
 
-    <form class="" action="/" method="post">
-      <input type="text" name="newItem" />
-      <button type="submit" name="button">Add</button>
-    </form>
+      <form class="item" action="/" method="post">
+        <input
+          type="text"
+          name="newItem"
+          placeholder="New Item"
+          autocomplete="off"
+        />
+        //There is a differences when we use "" insead of nothing in below part. when we use "" it gets all the string value. With nothing it gets only 
+        // the first value of the string. Be carefull when you use that kind of things. 
+        <button type="submit" name="list" value= <%=listTitle%>> +</button>
+      </form>
+    </div>
   </body>
 </html>
