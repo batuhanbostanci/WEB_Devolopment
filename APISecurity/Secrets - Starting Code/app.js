@@ -4,7 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const moongose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const app = express();
 
@@ -23,11 +24,6 @@ const userSchema = new moongose.Schema({
   password: String,
 });
 
-userSchema.plugin(encrypt, {
-  secret: process.env.SECRET,
-  encryptedFields: ["password"],
-});
-
 const User = new moongose.model("User", userSchema);
 
 app.get("/", function (req, res) {
@@ -43,17 +39,20 @@ app.get("/register", function (req, res) {
 });
 
 app.post("/register", async function (req, res) {
-  const newUser = new User({
-    email: req.body.username,
-    password: req.body.password,
-  });
+  bcrypt.hash(req.body.password, saltRounds, async function (err, hash) {
+    // Store hash in your password DB.
+    const newUser = new User({
+      email: req.body.username,
+      password: hash,
+    });
 
-  try {
-    await newUser.save();
-    res.render("secrets");
-  } catch (err) {
-    console.log(err);
-  }
+    try {
+      await newUser.save();
+      res.render("secrets");
+    } catch (err) {
+      console.log(err);
+    }
+  });
 });
 
 app.post("/login", async function (req, res) {
@@ -63,8 +62,12 @@ app.post("/login", async function (req, res) {
   try {
     const foundUser = await User.findOne({ email: username });
 
-    if (foundUser && foundUser.password === password) {
-      res.render("secrets");
+    if (foundUser) {
+      bcrypt.compare(password, foundUser.password, function (err, result) {
+        if (result === true) {
+          res.render("secrets");
+        }
+      });
     } else {
       // Handle invalid credentials or user not found
       res.render("login", { errorMessage: "Invalid username or password" });
