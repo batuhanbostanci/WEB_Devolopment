@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const moongose = require("mongoose");
+const encrypt = require("mongoose-encryption");
 
 const app = express();
 
@@ -20,6 +21,9 @@ const userSchema = new moongose.Schema({
   email: String,
   password: String,
 });
+
+const secret = "Thisisourlittlesecret.";
+userSchema.plugin(encrypt, { secret: secret, encryptedFields: ["password"] });
 
 const User = new moongose.model("User", userSchema);
 
