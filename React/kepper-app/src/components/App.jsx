@@ -2,12 +2,23 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
+import notes from "../notes";
 
 function App() {
   return (
     <div>
       <Header />
-      <Note />
+
+      {notes.map((itemOfNotes) => {
+        return (
+          <Note
+            key={itemOfNotes.key}
+            title={itemOfNotes.title}
+            content={itemOfNotes.content}
+          />
+        );
+      })}
+
       <Footer />
     </div>
   );
