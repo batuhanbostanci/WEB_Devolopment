@@ -1,0 +1,3 @@
+
+ const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+//Be carefull about this ussage; 

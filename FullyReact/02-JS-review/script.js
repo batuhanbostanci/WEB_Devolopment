@@ -143,17 +143,116 @@ const data = [
     return data.find((d) => d.id === id);
   }
 
-  const book = getBook(5);
+//   const book = getBook(5);
 
-  const {title,author,genres,reviews} = book
-  book
-// const {title,author} = book
-// console.log(title,author)
+//   const {title,author,genres,reviews} = book
+//   book
+// // const {title,author} = book
+// // console.log(title,author)
 
-const {goodreads,librarything} = reviews;
-goodreads
+// const {goodreads,librarything} = reviews;
+// goodreads
 
-const [first,second,...rest] = genres
-first
-second
-rest
+// const [first,second,...rest] = genres
+// first
+// second
+// rest
+
+
+function getTotalReviewCount(book){
+  const goodread = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  librarything
+  return goodread + librarything
+}
+
+//console.log(getTotalReviewCount(book))
+
+
+
+// const books = getBooks();
+// const x = [1,2,3,4,5].map((x)=> x *2);
+// console.log(x);
+
+
+// const titles = books.map((book) => book.title)
+// console.log(titles)
+
+
+// titles;
+
+
+// const essentialData = books.map(book=>({
+ 
+//     title:book.title,
+//     authore:book.author,
+//     reviewCount: getTotalReviewCount
+ 
+// }))
+
+// console.log(essentialData)
+
+
+// const longBooks = books.filter(
+//   book => book.pages > 500
+// ).filter((book)=> book.hasMovieAdaptation)
+
+// longBooks
+
+// const adventureBooks = books.filter(book => book.genres.includes("adventure"))
+// adventureBooks
+
+// const xy = [3,7,1,9,6]
+
+// const sorted = xy.sort()
+
+// sorted
+
+// const sortedByPages = books.slice().sort((a,b)=> a.pages - b.pages)
+
+// sortedByPages
+
+// newBook = {
+//   id: 6,
+//   title: "The Lord of the Rings",
+//   publicationDate: "1954-07-29",  
+// }
+
+// const booksAfterAdd = [...books,newBook]
+
+
+// const booksAfterRemove = books.filter(book => book.id !== 6)
+
+// booksAfterRemove
+
+
+// const booksAfterUpdate = booksAfterRemove.map((book)=>
+// book.id === 1 ? {...book, pages:999} : book);
+
+// booksAfterUpdate
+
+
+// fetch('https://jsonplaceholder.typicode.com/todos/1')
+// .then((res)=> res.json())
+// .then((data)=>console.log(data));
+
+// console.log("tesst")
+
+
+async function getToDo(){
+  const res =  await fetch('https://jsonplaceholder.typicode.com/todos')
+  const data = await res.json()
+  
+ 
+ 
+ // console.log(res)
+  return data;
+}
+
+const t = await getToDo()
+
+
+console.log(t)
+
+
+console.log("inside fucntion") 
