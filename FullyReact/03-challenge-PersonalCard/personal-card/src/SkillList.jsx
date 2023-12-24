@@ -1,14 +1,14 @@
 import React from "react";
 import Skill from "./Skill";
 import "./styles.css";
+import skills from "./skills";
 
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="React" emoji="💪🏻" color="red" />
-      <Skill skill="Java" emoji="🙉" color="orange" />
-      <Skill skill="CyberSecurity" emoji="👾" color="green" />
-      <Skill skill="JS" emoji="👾" color="yellow" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} level={skill.level} color={skill.color} />
+      ))}
     </div>
   );
 }

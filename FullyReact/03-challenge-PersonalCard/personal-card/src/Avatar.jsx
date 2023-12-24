@@ -3,7 +3,7 @@ import "./styles.css";
 
 function Avatar() {
   return (
-    <img className="avatar" src="/images/h4ckpng.png" alt="personal card" />
+    <img className="avatar" src="../images/prof.jpeg" alt="personal card" />
   );
 }
 
