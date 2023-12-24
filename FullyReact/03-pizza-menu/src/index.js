@@ -21,19 +21,34 @@ function Headers() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  const numOfPizzas = pizzas.length;
   return (
     <div className="menu">
-      <h2>Tacko Menu</h2>
-      {pizzaData.map((item) => {
-        return (
-          <Pizza
-            name={item.name}
-            ingredients={item.ingredients}
-            photoName={item.photoName}
-            price={item.price}
-          />
-        );
-      })}
+      <h2>Our Menu</h2>
+
+      {numOfPizzas > 0 ? (
+        <React.Fragment key="keyOfTheFirstragment">
+          <p>Authentic Italian Pizza made with love and passion</p>
+
+          <ul className="pizzas">
+            {" "}
+            {pizzaData.map((item) => {
+              return (
+                <Pizza
+                  name={item.name}
+                  ingredients={item.ingredients}
+                  photoName={item.photoName}
+                  price={item.price}
+                  soldOut={item.soldOut}
+                />
+              );
+            })}
+          </ul>
+        </React.Fragment>
+      ) : (
+        <p>We are still working on our menu. Please come back later</p>
+      )}
     </div>
   );
 }
@@ -49,21 +64,39 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}We're currently open
+      {isOpen ? (
+        <Order closeHour={closeHour} />
+      ) : (
+        <h3>We are currently closed</h3>
+      )}
     </footer>
   );
 }
 
-function Pizza(props) {
+function Order(props) {
   return (
-    <div className="pizza">
+    <div className="order">
+      {" "}
+      <h3>
+        We are open until {props.closeHour}:00. Come visit us or order online
+      </h3>
+      <button className="btn">Order Online</button>
+    </div>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+
+  return (
+    <ul className={`pizza ${props.soldOut ? "sold-out" : ""}`}>
       <img src={props.photoName} alt={props.name} width="200" height="200" />
-      <div>
+      <ul>
         <h3>{props.name}</h3>
         <p>{props.ingredients}</p>
-        <span>{parseInt(props.price) + 5}</span>
-      </div>
-    </div>
+        <span>{props.soldOut ? "SOLD OUT" : props.price}</span>
+      </ul>
+    </ul>
   );
 }
 
@@ -71,10 +104,12 @@ function Pizza(props) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Headers />
-    <App />
-    <Menu />
-    <Footer />
+    <div className="container">
+      <Headers />
+      <App />
+      <Menu />
+      <Footer />
+    </div>
   </React.StrictMode>
 );
 
