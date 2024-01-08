@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import { useState } from "react";
 export default function App() {
   return (
     <div className="App">
@@ -43,5 +43,21 @@ const questions = [
 ];
 
 function FlashCards() {
-  return <div>TODO</div>;
+  const [selectedId, setSelectedId] = useState(null);
+
+  return (
+    <div className="flashcards">
+      {questions.map((question) => (
+        <div
+          key={question.id}
+          onClick={() => setSelectedId(question.id)}
+          className={question.id === selectedId ? "selected" : ""}
+        >
+          <p>
+            {question.id === selectedId ? question.answer : question.question}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
 }
