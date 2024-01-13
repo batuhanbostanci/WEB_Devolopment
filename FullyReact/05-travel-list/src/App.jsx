@@ -13,12 +13,24 @@ function App() {
   function handleDeleteItem(id) {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+    console.log(items);
+  }
 
   return (
     <div>
       <Logo />
       <Form onAddItems={handleAddItem} />
-      <PackingList items={items} onDeleteItems={handleDeleteItem} />
+      <PackingList
+        items={items}
+        onDeleteItems={handleDeleteItem}
+        onToogleItems={handleToggleItem}
+      />
       <Stats />
     </div>
   );
