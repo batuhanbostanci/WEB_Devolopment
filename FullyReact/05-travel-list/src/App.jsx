@@ -19,7 +19,13 @@ function App() {
         item.id === id ? { ...item, packed: !item.packed } : item
       )
     );
-    console.log(items);
+  }
+
+  function handleClearList() {
+    const confirmed = window.confirm(
+      "Are you sure you want to clear the list ?"
+    );
+    if (confirmed) setItems([]);
   }
 
   return (
@@ -28,6 +34,7 @@ function App() {
       <Form onAddItems={handleAddItem} />
       <PackingList
         items={items}
+        onClearList={handleClearList}
         onDeleteItems={handleDeleteItem}
         onToogleItems={handleToggleItem}
       />
