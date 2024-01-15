@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Steps />
-      <Steps />
     </div>
   );
 }
@@ -50,22 +49,38 @@ function Steps() {
             Step {step} : {messages[step - 1]}
           </p>
           <div className="buttons">
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+            <Button
+              bgColor="#7950f2"
+              textColor="#fff"
               onClick={previous}
+              text="Previous"
             >
-              Previous
-            </button>
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              <span> 👈</span> Previous
+            </Button>
+
+            <Button
+              bgColor="#7950f2"
+              textColor="#fff"
               onClick={next}
+              text="next"
             >
-              Next
-            </button>
+              Next <span> 👉</span>
+            </Button>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function Button({ textColor, bgColor, onClick, children }) {
+  return (
+    <button
+      style={{ backgroundColor: bgColor, color: textColor }}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }
 
