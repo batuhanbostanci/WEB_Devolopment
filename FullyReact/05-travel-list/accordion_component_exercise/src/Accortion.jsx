@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 
 function Accordion() {
+  const [curOpen, setIsOpen] = useState(null);
+
   return (
     <div className="accordion">
       <ul>
         {faqs.map((faq, index) => {
           return (
-            <AccordionItem number={index} title={faq.title} text={faq.text} />
+            <AccordionItem
+              number={index}
+              title={faq.title}
+              curOpen={curOpen}
+              setIsOpen={setIsOpen}
+            >
+              {faq.text}
+            </AccordionItem>
           );
         })}
       </ul>
@@ -14,11 +23,11 @@ function Accordion() {
   );
 }
 
-function AccordionItem({ number, title, text }) {
-  const [isOpen, setIsOpen] = useState(false);
+function AccordionItem({ number, title, children, curOpen, setIsOpen }) {
+  const isOpen = curOpen === number;
 
   function handleClick() {
-    setIsOpen(!isOpen);
+    setIsOpen(number);
   }
 
   return (
@@ -27,7 +36,7 @@ function AccordionItem({ number, title, text }) {
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>
 
-      {isOpen && <div className="content-box">{text}</div>}
+      {isOpen && <div className="content-box">{children}</div>}
     </div>
   );
 }
