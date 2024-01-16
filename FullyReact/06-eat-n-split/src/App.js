@@ -2,10 +2,16 @@ import "./index.css";
 
 function App() {
   return (
-    <div>
-      <h1>Eat-n-Split</h1>
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList />
+      </div>
     </div>
   );
+}
+
+function FriendsList() {
+  return <ul>List</ul>;
 }
 
 const initialFriends = [
