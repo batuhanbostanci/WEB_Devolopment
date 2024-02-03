@@ -31,12 +31,14 @@ function Tabbed({ content }) {
 
   return (
     <div>
-      <div className="tabs">
-        <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
-      </div>
+      {
+        <div className="tabs">
+          <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
+          <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
+          <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
+          <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
+        </div>
+      }
 
       {activeTab <= 2 ? (
         <TabContent
@@ -65,8 +67,25 @@ function TabContent({ item }) {
   const [showDetails, setShowDetails] = useState(true);
   const [likes, setLikes] = useState(0);
 
+  console.log("TabContent render");
+
   function handleInc() {
     setLikes(likes + 1);
+  }
+
+  function handleTripleInc() {
+    setLikes((likes) => likes + 3);
+    setLikes((likes) => likes + 3);
+    setLikes((likes) => likes + 3);
+  }
+
+  function handeUndo() {
+    setShowDetails(true);
+    setLikes(0);
+  }
+
+  function handleUndoLater() {
+    setTimeout(handeUndo, 2000);
   }
 
   return (
@@ -82,13 +101,13 @@ function TabContent({ item }) {
         <div className="hearts-counter">
           <span>{likes} ❤️</span>
           <button onClick={handleInc}>+</button>
-          <button>+++</button>
+          <button onClick={handleTripleInc}>+++</button>
         </div>
       </div>
 
       <div className="tab-undo">
-        <button>Undo</button>
-        <button>Undo in 2s</button>
+        <button onClick={handeUndo}>Undo</button>
+        <button onClick={handleUndoLater}>Undo in 2s</button>
       </div>
     </div>
   );
