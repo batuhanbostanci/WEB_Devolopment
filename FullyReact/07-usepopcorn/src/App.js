@@ -188,7 +188,17 @@ function MovieDetails({ selectedId, onCloseMovie, onhandelAddWatch, watched }) {
     },
     [selectedId]
   );
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `${title} | Movie Details`;
 
+      return function () {
+        document.title = "usePopcorn";
+      };
+    },
+    [title]
+  );
   //Each time the component is renderes that is way we use [] as second argument
   return (
     <div className="details">
