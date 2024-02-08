@@ -13,7 +13,6 @@ export default function App() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const [tempQuery, setTempQuery] = useState("interstellar");
   const [selectedId, setSelectedId] = useState(null);
 
   // useEffect(function () {
