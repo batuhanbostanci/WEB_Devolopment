@@ -8,7 +8,7 @@ const average = (arr) =>
 const KEY = "44861cfe";
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -149,6 +149,7 @@ function MovieDetails({ selectedId, onCloseMovie, onhandelAddWatch, watched }) {
     Genre: genre,
   } = movie;
 
+  //const [avgRating, setAvgRating] = useState(0);
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -161,7 +162,9 @@ function MovieDetails({ selectedId, onCloseMovie, onhandelAddWatch, watched }) {
     };
 
     onhandelAddWatch(newWatchedMovie);
-    onCloseMovie();
+    //setAvgRating(Number(imdbRating)); //When we do that it wont't updatate bcs it works with async
+    //setAvgRating((avgRating) => {avgRating + userRating / 2}) // It will work bcs callbacks get the value of it.
+    //onCloseMovie();
   }
 
   useEffect(

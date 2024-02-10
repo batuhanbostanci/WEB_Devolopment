@@ -1,3 +1,9 @@
 HOOKS:
 Only call hooks at the top level 
 Only call hooks from React function 
+
+In, hooks. React only look useState hook value in initial state. When we change after 
+initial state. It is not going to change the value of the useState() hook.
+
+You should useState with callback function generally not every case. Keep in mind that it works with async way that is the 
+reason you should usestate with callback when your code going to use async way.  
