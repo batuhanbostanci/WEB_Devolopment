@@ -9,11 +9,16 @@ const KEY = "44861cfe";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+  //const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(() => {
+    const storedValue = localStorage.getItem("watched");
+
+    return JSON.parse(storedValue);
+  });
 
   function handleMovieClick(id) {
     setSelectedId((selectedId) => (selectedId === id ? null : id));
@@ -23,11 +28,20 @@ export default function App() {
   }
   function handleAddWatch(movie) {
     setWatched((watched) => [...watched, movie]);
+
+    //localStorage.setItem("watched", JSON.stringify([...watched, movie]))
   }
 
   function handleDeleteWatch(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
