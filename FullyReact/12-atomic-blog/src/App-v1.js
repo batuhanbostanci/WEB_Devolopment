@@ -55,7 +55,6 @@ function App() {
         setSearchQuery,
       }}
     >
-      {/* PROVIDE VALUE TO THE CHILD COPMPOENNTS */}
       <section>
         <button
           onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
