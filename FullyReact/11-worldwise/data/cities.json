@@ -13,111 +13,27 @@
       "id": "73930385"
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "Berlin",
+      "id": "d815",
+      "cityName": "Gerstungen",
       "country": "Germany",
+      "date": "2024-01-24T17:44:45.000Z",
+      "notes": "tst notu",
       "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "26b8",
-      "cityName": "Voronkiv",
-      "country": "Ukraine",
-      "date": "2024-04-21T12:19:54.040Z",
-      "notes": "Kiev",
-      "emoji": "🇺🇦",
-      "position": {
-        "lat": "50.064191736659104",
-        "lng": "31.157226562500004"
+        "lat": "50.972264889367494",
+        "lng": "10.04150390625"
       }
     },
     {
-      "id": "128c",
-      "cityName": "Ankara",
-      "country": "Turkiye",
-      "date": "2024-04-21T12:20:24.059Z",
-      "notes": "",
-      "emoji": "🇹🇷",
+      "id": "ceb4",
+      "cityName": "Cuyama",
+      "country": "United States of America (the)",
+      "date": "2023-09-08T17:45:07.000Z",
+      "notes": "silicon valley ",
+      "emoji": "🇺🇸",
       "position": {
-        "lat": "39.470125122358176",
-        "lng": "33.00292968750001"
-      }
-    },
-    {
-      "id": "cf2c",
-      "cityName": "Oktyabr’skiy",
-      "country": "Russian Federation (the)",
-      "date": "2024-04-21T12:21:22.783Z",
-      "notes": "test2",
-      "emoji": "🇷🇺",
-      "position": {
-        "lat": "61.64816245852389",
-        "lng": "43.76953125"
-      }
-    },
-    {
-      "id": "6e1d",
-      "cityName": "Chisinau",
-      "country": "Moldova (the Republic of)",
-      "date": "2024-04-21T12:26:10.116Z",
-      "notes": "",
-      "emoji": "🇲🇩",
-      "position": {
-        "lat": "47.07012182383309",
-        "lng": "28.696289062500004"
-      }
-    },
-    {
-      "id": "9535",
-      "cityName": "Latowicz",
-      "country": "Poland",
-      "date": "2024-04-21T12:26:16.285Z",
-      "notes": "",
-      "emoji": "🇵🇱",
-      "position": {
-        "lat": "52.02545860348814",
-        "lng": "21.708984375000004"
-      }
-    },
-    {
-      "id": "d2e3",
-      "cityName": "Didim",
-      "country": "Turkiye",
-      "date": "2024-04-21T12:35:42.722Z",
-      "notes": "",
-      "emoji": "🇹🇷",
-      "position": {
-        "lat": "37.42252593456307",
-        "lng": "27.377929687500004"
-      }
-    },
-    {
-      "id": "bf6a",
-      "cityName": "Kumluca",
-      "country": "Turkiye",
-      "date": "2024-04-21T12:36:03.886Z",
-      "notes": "",
-      "emoji": "🇹🇷",
-      "position": {
-        "lat": "36.63316209558658",
-        "lng": "30.300292968750004"
+        "lat": "34.88593094075317",
+        "lng": "-119.75097656250001"
       }
     }
   ]
