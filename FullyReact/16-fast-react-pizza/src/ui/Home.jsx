@@ -1,5 +1,5 @@
 import CreateUser from '../features/user/CreateUser';
-
+import Button from '../ui/Button';
 function Home() {
   return (
     <div className="my-10 px-4 text-center sm:my-16">
