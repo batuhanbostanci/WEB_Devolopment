@@ -32,10 +32,12 @@ function Cart() {
     <div>
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2>Your cart, %NAME%</h2>
+      <h2 className="my-3">Your cart, %NAME%</h2>
 
       <div>
-        <Button to="/order/new">Order pizzas</Button>
+        <Button type="primary" to="/order/new">
+          Order pizzas
+        </Button>
         <Button>Clear cart</Button>
       </div>
     </div>
