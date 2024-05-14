@@ -42,43 +42,53 @@ function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Lets go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Lets go!</h2>
       {/* Thoose are the 2 ways of making actions. React undertand staht closes action for this reason is up to you to use or not */}
       {/*<Form method="POST" action="/order/new"></Form> */}
       <Form method="POST">
-        <div>
-          <label>First Name</label>
+        <div className="mb-5 flex flex-col items-center gap-2 sm:flex-row">
+          <label className="sm:basis-40">First Name</label>
           {/*Ussing this class name input should be the exception because making everything in the index.css will be the oldway of doing that for the learning path input would implement here!*/}
-          <input type="text" name="customer" required className="input" />
+          <input type="text" name="customer" required className="input grow" />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="input" />
-          </div>
-
-          {formErrors?.phone && <p>{formErrors.phone}</p>}
-        </div>
-
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input" />
+        <div className="mb-5 flex flex-col items-center gap-2 sm:flex-row">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input type="tel" name="phone" required className="input w-full" />
+            {formErrors?.phone && (
+              <p className="mt-2 rounded-full bg-red-100 p-2 text-xs text-red-700">
+                {formErrors.phone}
+              </p>
+            )}
           </div>
         </div>
 
-        <div>
+        <div className="mb-5 flex flex-col items-center gap-2 sm:flex-row">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              type="text"
+              name="address"
+              required
+              className="input w-full"
+            />
+          </div>
+        </div>
+
+        <div className="mb-12 flex items-center gap-5">
           <input
             type="checkbox"
             name="priority"
             id="priority"
-            className="mt-2 h-6 w-6 accent-yellow-400 duration-300  focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 "
+            className="h-6 w-6 accent-yellow-400 duration-300  focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 "
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label className="font-medium" htmlFor="priority">
+            Want to yo give your order priority?
+          </label>
         </div>
 
         <div>
