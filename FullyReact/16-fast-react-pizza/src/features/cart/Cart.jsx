@@ -9,8 +9,6 @@ import EmptyCart from './EmptyCart';
 function Cart() {
   const username = useSelector((state) => state.user.username);
   const cart = useSelector(getCart);
-  console.log('cart jsx ' + { cart });
-  cart.map((item) => console.log(item));
   const dispatch = useDispatch();
 
   if (!cart.length) return <EmptyCart />;
@@ -23,7 +21,7 @@ function Cart() {
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {console.log(cart)}
         {cart.map((item) => (
-          <CartItem key={item.id} item={item}></CartItem>
+          <CartItem key={item.pizzaId} item={item}></CartItem>
         ))}
       </ul>
       <div className="mt-6 space-x-2">
