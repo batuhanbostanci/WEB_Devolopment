@@ -7,11 +7,11 @@ function MenuItem({ pizza }) {
   const dispatch = useDispatch();
   function handleAddToCart() {
     const newItem = {
-      id: 1,
+      id: id,
       name,
       unitPrice,
-      quantity: 2,
-      totalPrice: unitPrice * 2,
+      quantity: 1,
+      totalPrice: unitPrice * 1,
     };
     dispatch(addItem(newItem));
   }
