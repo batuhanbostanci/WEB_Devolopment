@@ -158,8 +158,6 @@ export async function action({ request }) {
 
   const errors = {};
 
-  console.log(order);
-
   if (!isValidPhone(order.phone)) errors.phone = 'Invalid phone number';
 
   if (Object.keys(errors).length > 0) {
