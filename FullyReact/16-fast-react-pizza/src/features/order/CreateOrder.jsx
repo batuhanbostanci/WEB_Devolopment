@@ -23,11 +23,19 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
+  const {
+    username,
+    status: addressStatus,
+    position,
+    address,
+    error: errorAddress,
+  } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
-  console.log(isSubmitting);
-  const username = useSelector((state) => state.user.username);
+
+  const isLoadingAddress = addressStatus === 'loading';
 
   const formErrors = useActionData();
   const cart = useSelector(getCart);
@@ -41,9 +49,6 @@ function CreateOrder() {
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Lets go!</h2>
 
-      <button onClick={() => dispatch(fetchAdress())} className="px-4 py-4">
-        Get Position
-      </button>
       {/* Thoose are the 2 ways of making actions. React undertand staht closes action for this reason is up to you to use or not */}
       {/*<Form method="POST" action="/order/new"></Form> */}
       <Form method="POST">
@@ -71,16 +76,35 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div className="mb-5 flex flex-col items-center gap-2 sm:flex-row">
+        <div className="relative mb-5 flex flex-col items-center gap-2 sm:flex-row">
           <label className="sm:basis-40">Address</label>
-          <div className="grow">
+          <div className=" grow">
             <input
               type="text"
               name="address"
               required
+              disabled={isLoadingAddress}
+              defaultValue={address}
               className="input w-full"
             />
+            {addressStatus === 'error' && (
+              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+                {errorAddress}
+              </p>
+            )}
           </div>
+          <span className="absolute right-0 z-50">
+            <Button
+              disabled={isLoadingAddress}
+              type="primary"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(fetchAdress());
+              }}
+            >
+              Get Position
+            </Button>
+          </span>
         </div>
 
         <div className="mb-12 flex items-center gap-5">
@@ -99,8 +123,19 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.longitude && position.latitude
+                ? `${position.latitude},${position.longitude}`
+                : ''
+            }
+          />
+
           <Button type="primary">
-            {isSubmitting
+            {isSubmitting || isLoadingAddress
               ? 'Placing order....'
               : `Order now from ${formatCurrency(totalPrice)}€`}
           </Button>
@@ -122,6 +157,8 @@ export async function action({ request }) {
   };
 
   const errors = {};
+
+  console.log(order);
 
   if (!isValidPhone(order.phone)) errors.phone = 'Invalid phone number';
 
