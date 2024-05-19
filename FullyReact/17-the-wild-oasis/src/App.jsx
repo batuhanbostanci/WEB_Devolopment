@@ -1,46 +1,32 @@
-import styled from "styled-components";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Heading from "./ui/Heading";
-import Row from "./ui/Row";
-
-const StyledApp = styled.div`
-  /* background-color: orangered; */
-  padding: 20px;
-`;
+import Account from "./pages/Account";
+import Bookings from "./pages/Bookings";
+import Cabins from "./pages/Cabins";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Seetings from "./pages/Settings";
+import Users from "./pages/Users";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <StyledApp>
-        <Row>
-          <Row type="horizontal">
-            <Heading as="h1">The Wild Oasis</Heading>
-
-            <div>
-              <Heading as="h2">Check in and out</Heading>
-              <Button onClick={() => alert("Check in")}>Click me!</Button>
-              <Button
-                variation="secondary"
-                size="small"
-                onClick={() => alert("Check out")}
-              >
-                Click out!
-              </Button>
-            </div>
-          </Row>
-          <Heading as="h3">Form</Heading>
-
-          <Row type="vertical">
-            <form>
-              <Input type="number" placeholder="number of guests"></Input>
-              <Input type="number" placeholder="number of guests"></Input>
-            </form>
-          </Row>
-        </Row>
-      </StyledApp>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate replace to="dashboard" />}></Route>
+          <Route path="account" element={<Account></Account>}></Route>
+          <Route path="bookings" element={<Bookings></Bookings>}></Route>
+          <Route path="cabins" element={<Cabins></Cabins>}></Route>
+          <Route path="dashboard" element={<Dashboard></Dashboard>}></Route>
+          <Route path="dashboard" element={<Dashboard></Dashboard>}></Route>
+          <Route path="login" element={<Login></Login>}></Route>
+          <Route path="settings" element={<Seetings></Seetings>}></Route>
+          <Route path="users" element={<Users></Users>}></Route>
+          <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
