@@ -9,14 +9,8 @@ import Textarea from "../../ui/Textarea";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
-  const { id: editId, ...editValues } = cabinToEdit;
-  console.log({ editValues });
-  const isEditSession = Boolean(editId);
-  console.log(isEditSession);
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: isEditSession ? editValues : {},
-  });
+function CreateCabinForm() {
+  const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
   //console.log(errors);
 
