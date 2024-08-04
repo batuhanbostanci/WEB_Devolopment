@@ -8,6 +8,8 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
+import { UseCreateCabin } from "./useCreateCabin";
+import { UseEditCabin } from "./UseEditCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -20,37 +22,25 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { errors } = formState;
   //console.log(errors);
 
-  const queryClient = useQueryClient();
-  const { mutate: createCabin, isLoading: isCreating } = useMutation({
-    mutationFn: (newCabin) => createEditCabin(newCabin),
-    onSuccess: () => {
-      toast.success("Cabin successfully created");
-      queryClient.invalidateQueries(["cabins"]);
-      reset();
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
+  const { isCreating, createCabin } = UseCreateCabin();
+  const { editCabin, isEditing } = UseEditCabin();
 
-  const { mutate: editCabin, isLoading: isEditing } = useMutation({
-    mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
-    onSuccess: () => {
-      toast.success("Cabin successfully edited");
-      queryClient.invalidateQueries(["cabins"]);
-      reset();
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
+  const queryClient = useQueryClient();
 
   const isWorking = isCreating || isEditing;
   function onSumbit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
     if (isEditSession) {
       editCabin({ newCabinData: { ...data, image }, id: editId });
-    } else createCabin({ ...data, image: image });
+    } else
+      createCabin(
+        { ...data, image: image },
+        {
+          onSuccess: () => {
+            reset();
+          },
+        }
+      );
   }
 
   function onError(errors) {
