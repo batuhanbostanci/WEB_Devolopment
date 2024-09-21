@@ -3,11 +3,12 @@ import toast from "react-hot-toast";
 import { createEditCabin } from "../../services/apiCabins";
 
 export function UseEditCabin() {
+  const queryClient = new QueryClient();
   const { mutate: editCabin, isLoading: isEditing } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
       toast.success("Cabin successfully edited");
-      QueryClient.invalidateQueries(["cabins"]);
+      queryClient.invalidateQueries(["cabins"]);
     },
     onError: (err) => {
       toast.error(err.message);
