@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { createPortal } from "react-dom";
 import { cloneElement, createContext, useContext, useState } from "react";
 import { set } from "date-fns";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -76,6 +77,8 @@ function Open({ children, opens: opensWindowsName }) {
 
 function Windows({ children, name }) {
   const { openName, close } = useContext(ModalContext);
+
+  const ref = useOutsideClick(close);
   if (name !== openName) return null;
 
   return createPortal(
