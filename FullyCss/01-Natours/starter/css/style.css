@@ -51,12 +51,14 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .heading-primary {
   text-transform: uppercase;
   color: #fff;
   backface-visibility: hidden; /* Prevents flickering */
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -113,4 +115,29 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.btn:link,
+.btn:visited {
+
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;/*We always use this if we want, the element will has its own padding etc..*/
+  border-radius: 100px;
+  transition: all .2s;
+}
+
+.btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn:active{
+  transform: translateY(-1px);
+}
+
+.btn-white{
+  background-color: #fff;
+  color:#777;
 }
