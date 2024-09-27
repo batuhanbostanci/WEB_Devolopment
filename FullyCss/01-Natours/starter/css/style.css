@@ -126,6 +126,7 @@ body {
   display: inline-block;/*We always use this if we want, the element will has its own padding etc..*/
   border-radius: 100px;
   transition: all .2s;
+  position: relative;
 }
 
 .btn:hover{
@@ -140,4 +141,47 @@ body {
 .btn-white{
   background-color: #fff;
   color:#777;
+}
+
+/*sudo elements gives to us a feature to change specific parts of the property*/
+
+.btn::after{
+  content:"";/*we have to define it alyways*/
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+ 
+}
+
+.btn-white::after{
+  background-color:#fff;
+}
+
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(+100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-animated{
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards; /*This is important*/
 }
