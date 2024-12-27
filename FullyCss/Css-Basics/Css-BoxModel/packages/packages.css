@@ -33,12 +33,27 @@ main {
   background: white;
 }
 
+.clearfix {
+  clear: both;
+}
+
 #plus {
   background: rgba(213, 255, 220, 0.95);
 }
 #free {
   background: rgba(224, 252, 237, 0.95);
+  float: right;
+  border-right: none;
+  border-left: 4px solid #0e4f1f;
+  text-align: right;
 }
+
+/*This is the better way instead of using import version of it in the upper part in packages !important*/
+#free:hover,
+#free:active {
+  border-color: #ff5454;
+}
+
 #premium {
   background: rgba(14, 79, 31, 0.95);
 }
