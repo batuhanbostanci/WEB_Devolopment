@@ -20,10 +20,19 @@ body {
   border: 5px solid black;
 }
 
-.parent div {
+.parent span {
   background: rgb(105, 105, 105);
   color: white;
   padding: 10px;
   border: 5px solid black;
   margin: 10px;
+}
+
+.parent .child-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box; /* This is important to add this navigation bar */
 }
