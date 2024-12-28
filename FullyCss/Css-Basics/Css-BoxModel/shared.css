@@ -10,6 +10,8 @@ body {
 .main-header {
   background-color: #2ddf5c;
   width: 100%;
+  top: 0;
+  left: 0;
   padding: 8px 16px;
 }
 .main-nav {
