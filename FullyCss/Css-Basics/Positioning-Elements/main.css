@@ -18,6 +18,8 @@ body {
   padding: 20px;
   margin: 0;
   border: 5px solid black;
+  position: relative;
+  top: 200px;
 }
 
 .parent span {
@@ -28,11 +30,19 @@ body {
   margin: 10px;
 }
 
-.parent .child-1 {
+.parent div {
+  color: white;
+  padding: 10px;
+  border: 5px solid black;
+  background: rgb(105, 105, 109);
+  margin: 10px;
+}
+
+/* .parent .child-1 {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   margin: 0;
-  box-sizing: border-box; /* This is important to add this navigation bar */
-}
+  box-sizing: border-box; 
+} */
