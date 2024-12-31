@@ -1,5 +1,6 @@
 import TableOperations from "../../ui/TableOperations";
 import Filter from "../../ui/Filter";
+import SortBy from "../../ui/SortBy";
 
 function CabinTableOperations() {
   return (
@@ -12,6 +13,17 @@ function CabinTableOperations() {
           { value: "with-discount", label: "With-discount" },
         ]}
       ></Filter>
+
+      <SortBy
+        options={[
+          { value: "name-asc", label: "Sort By Name (A-Z)" },
+          { value: "value-desc", label: "Sort By Name (Z-A)" },
+          { value: "regularPrice-asc", label: "Sort By Price (low first)" },
+          { value: "regularPrice-desc", label: "Sort By Price (high first)" },
+          { value: "maxCapacity-asc", label: "Sort By Capacity (low first)" },
+          { value: "maxCapacity-desc", label: "Sort By Capacity (high first)" },
+        ]}
+      ></SortBy>
     </TableOperations>
   );
 }
