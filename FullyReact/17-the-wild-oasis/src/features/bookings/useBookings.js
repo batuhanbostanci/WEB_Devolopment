@@ -37,7 +37,7 @@ export function useBookings() {
   });
 
   //PRE-FETCHING
-  const pageCount = Math.Ceil(count / PAGE_SIZE);
+  const pageCount = Math.ceil(count / PAGE_SIZE);
 
   if (page < pageCount)
     queryClient.prefetchQuery({
