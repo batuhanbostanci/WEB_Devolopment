@@ -9,7 +9,7 @@ export function useUpdateUser() {
     onSuccess: ({ user }) => {
       toast.success("User successfully updated");
 
-      queryClient.setQueriesData(["user"], user.user);
+      queryClient.setQueriesData(["user"], user);
       queryClient.invalidateQueries(["user"]);
     },
     onError: (error) => {
