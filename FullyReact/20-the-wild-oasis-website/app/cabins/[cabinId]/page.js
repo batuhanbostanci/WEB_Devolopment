@@ -2,6 +2,8 @@ import Image from "next/image";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import TextExpander from "@/app/_components/TextExpander";
+import DateSelector from "@/app/_components/DateSelector";
+import ReservationForm from "@/app/_components/ReservationForm";
 
 // export const metadata = {
 //   title: "Cabin",
@@ -74,8 +76,13 @@ export default async function Page({ params }) {
 
       <div>
         <h2 className="text-5xl font-semibold text-center">
-          Reserve today. Pay on arrival.
+          Reserve {name} today. Pay on arrival.
         </h2>
+
+        <div>
+          <DateSelector></DateSelector>
+          <ReservationForm></ReservationForm>
+        </div>
       </div>
     </div>
   );
