@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { getCabin, getCabins } from "@/app/_lib/data-service";
+import {
+  getBookedDatesByCabinId,
+  getCabin,
+  getCabins,
+  getSettings,
+} from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import TextExpander from "@/app/_components/TextExpander";
 import DateSelector from "@/app/_components/DateSelector";
@@ -24,7 +29,19 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
-  const cabin = await getCabin(params.cabinId);
+  // const cabin = await getCabin(params.cabinId);
+  // const setting = await getSettings();
+  // const bookedDates = await getBookedDatesByCabinId(params.cabinId);
+
+  //Instead of making upper part, below part is better becasue upper ones will be created a waterfall effect. In that time user has to be wait while all the components are being created.
+  //In the below part, all the components are created at the same time. So, the porcess is going to be parallel. But still, the process is going to be slow
+  //For this reason there is a better way to do that. Which is creating their on components and making fetch request in their own components.
+  const [cabin, settings, bookedDates] = await Promise.all([
+    getCabin(params.cabinId),
+    getSettings(),
+    getBookedDatesByCabinId(params.cabinId),
+  ]);
+
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
 
