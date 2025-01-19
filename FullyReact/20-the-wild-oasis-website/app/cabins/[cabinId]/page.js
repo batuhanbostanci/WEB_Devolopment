@@ -4,6 +4,7 @@ import Reservation from "@/app/_components/Reservation";
 import Spinner from "@/app/_components/Spinner";
 import { Suspense } from "react";
 import Cabin from "@/app/_components/Cabin";
+import ReservationReminder from "@/app/_components/ReservationReminder";
 
 // export const metadata = {
 //   title: "Cabin",
@@ -38,6 +39,7 @@ export default async function Page({ params }) {
 
         <Suspense fallback={<Spinner />}>
           <Reservation cabin={cabin} />
+          <ReservationReminder />
         </Suspense>
       </div>
     </div>
