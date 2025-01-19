@@ -1,6 +1,8 @@
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
 import ReservationForm from "./ReservationForm";
+import LoginMessage from "./LoginMessage";
+import { auth } from "../_lib/auth";
 
 async function Reservation({ cabin }) {
   //Instead of making upper part, below part is better becasue upper ones will be created a waterfall effect. In that time user has to be wait while all the components are being created.
@@ -11,6 +13,8 @@ async function Reservation({ cabin }) {
     getBookedDatesByCabinId(cabin.id),
   ]);
 
+  const session = await auth();
+
   return (
     <div className="grid grid-cols-2 border border-primary-800 min-h-[400px]">
       <DateSelector
@@ -18,7 +22,11 @@ async function Reservation({ cabin }) {
         bookedDates={bookedDates}
         cabin={cabin}
       />
-      <ReservationForm cabin={cabin} />
+      {session?.user ? (
+        <ReservationForm cabin={cabin} user={session.user} />
+      ) : (
+        <LoginMessage />
+      )}
     </div>
   );
 }
