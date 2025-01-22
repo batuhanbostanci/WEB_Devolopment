@@ -6,7 +6,7 @@ import { updateGuest } from "../_lib/actions";
 function UpdateProfileForm({ children, guest }) {
   const [count, setCount] = useState();
 
-  const { fullName, email, nationality, nationalId, countryFlag } = guest;
+  const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
   return (
     <form
@@ -50,7 +50,7 @@ function UpdateProfileForm({ children, guest }) {
         <input
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           name="nationalID"
-          defaultValue={nationalId}
+          defaultValue={nationalID}
         />
       </div>
 
