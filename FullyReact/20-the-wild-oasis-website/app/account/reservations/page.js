@@ -1,11 +1,14 @@
+import { getBookings } from "@/app/_lib/data-service";
 import ReservationCard from "../../_components/ReservationCard";
+import { auth } from "@/app/_lib/auth";
 
 export const metadata = {
   title: "Reservations",
 };
 
-export default function Page() {
-  const bookings = [];
+export default async function Page() {
+  const session = await auth();
+  const bookings = await getBookings(session.user.guestId);
 
   return (
     <div>
@@ -22,9 +25,9 @@ export default function Page() {
         </p>
       ) : (
         <ul className="space-y-6">
-          {bookings.map((booking) => {
-            <ReservationCard booking={booking} key={booking.id} />;
-          })}
+          {bookings.map((booking) => (
+            <ReservationCard booking={booking} key={booking.id} />
+          ))}
         </ul>
       )}
     </div>
