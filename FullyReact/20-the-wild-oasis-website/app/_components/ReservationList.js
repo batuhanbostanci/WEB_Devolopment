@@ -7,7 +7,9 @@ import ReservationCard from "./ReservationCard";
 export default function ReservationList({ bookings }) {
   const [optimisticBookings, optimisticDelete] = useOptimistic(
     bookings,
-    (curBooking, bookingId) => {}
+    (curBooking, bookingId) => {
+      return curBooking.filter((booking) => booking.Id != bookingId);
+    }
   );
 
   async function handleDelete(bookingId) {
